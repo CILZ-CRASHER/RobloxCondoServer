@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CONDO GAMES</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#080809;
+    --card:#101012;
+    --border:rgba(255,255,255,.09);
+    --white:#f5f5f6;
+    --muted:#85858d;
+    --green:#35e889;
+    --discord:#5865f2;
+}
+
+body{
+    min-height:100vh;
+    background:#080809;
+    color:var(--white);
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+.header{
+    height:78px;
+    border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.header-inner{
+    width:min(1060px,calc(100% - 40px));
+    height:100%;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.brand-name{
+    font-size:15px;
+    font-weight:800;
+}
+
+.live-small{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    padding:5px 9px;
+    border-radius:999px;
+    background:rgba(53,232,137,.07);
+    border:1px solid rgba(53,232,137,.18);
+    color:var(--green);
+    font-size:9px;
+    font-weight:800;
+}
+
+.live-small-dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:var(--green);
+}
+
+.header-buttons{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.join-discord{
+    padding:9px 15px;
+    border-radius:8px;
+    background:var(--discord);
+    color:white;
+    text-decoration:none;
+    font-size:11px;
+    font-weight:800;
+    transition:.2s;
+}
+
+.join-discord:hover{
+    background:#4752c4;
+}
+
+.main{
+    width:min(1060px,calc(100% - 40px));
+    margin:auto;
+}
+
+.hero{
+    padding:52px 0 45px;
+}
+
+.hero-card{
+    overflow:hidden;
+    border-radius:25px;
+    border:1px solid var(--border);
+    background:linear-gradient(180deg,#111116,#0d0d11);
+}
+
+.hero-media{
+    position:relative;
+    width:100%;
+    height:390px;
+    overflow:hidden;
+    background:#000;
+}
+
+.hero-media video{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+}
+
+.hero-media::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(0,0,0,.05),
+            rgba(0,0,0,.10) 45%,
+            rgba(0,0,0,.70)
+        );
+}
+
+.hero-live{
+    position:absolute;
+    z-index:5;
+    top:26px;
+    left:28px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px 17px;
+    border-radius:10px;
+    background:#f34c50;
+    color:#fff;
+    font-size:14px;
+    font-weight:900;
+    box-shadow:0 8px 25px rgba(243,76,80,.25);
+}
+
+.hero-live-dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:white;
+}
+
+.hero-content{
+    padding:28px 30px 31px;
+}
+
+.hero-title{
+    font-size:30px;
+    line-height:1.12;
+    font-weight:850;
+    letter-spacing:-.7px;
+}
+
+.hero-description{
+    margin-top:10px;
+    max-width:700px;
+    color:#85858d;
+    font-size:17px;
+    line-height:1.45;
+}
+
+.server-section{
+    padding-bottom:40px;
+}
+
+.server-head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    margin-bottom:19px;
+}
+
+.server-title{
+    font-size:18px;
+    font-weight:800;
+}
+
+.server-stats{
+    color:#707078;
+    font-size:11px;
+}
+
+.server-stats span{
+    color:#929299;
+}
+
+.server-grid{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:18px;
+}
+
+.server-card{
+    overflow:hidden;
+    border-radius:13px;
+    border:1px solid var(--border);
+    background:#101012;
+}
+
+.server-image{
+    position:relative;
+    width:100%;
+    height:232px;
+    overflow:hidden;
+    background:#111;
+}
+
+.server-image img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+}
+
+.server-image::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            180deg,
+            transparent 30%,
+            rgba(0,0,0,.65)
+        );
+}
+
+.available{
+    position:absolute;
+    z-index:3;
+    top:13px;
+    left:13px;
+    padding:6px 9px;
+    border-radius:6px;
+    background:rgba(8,8,9,.84);
+    border:1px solid rgba(255,255,255,.08);
+    color:var(--green);
+    font-size:9px;
+    font-weight:850;
+}
+
+.server-body{
+    padding:17px;
+}
+
+.server-name{
+    font-size:17px;
+    font-weight:750;
+}
+
+.player-line{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-top:15px;
+    color:#85858b;
+    font-size:11px;
+}
+
+.player-count{
+    color:#ededed;
+    font-weight:750;
+}
+
+.join-server{
+    display:block;
+    width:100%;
+    margin-top:15px;
+    padding:11px;
+    border-radius:7px;
+    background:#f1f1f1;
+    color:#090909;
+    text-align:center;
+    text-decoration:none;
+    font-size:10px;
+    font-weight:850;
+}
+
+.join-server:hover{
+    background:#fff;
+}
+
+.footer{
+    padding:55px 0 30px;
+    color:#4e4e53;
+    text-align:center;
+    font-size:10px;
+}
+
+@media(max-width:720px){
+
+    .header-inner,
+    .main{
+        width:calc(100% - 28px);
+    }
+
+    .header{
+        height:68px;
+    }
+
+    .header-inner{
+        gap:10px;
+    }
+
+    .header-buttons{
+        gap:6px;
+    }
+
+    .join-discord{
+        padding:8px 10px;
+        font-size:9px;
+    }
+
+    .hero{
+        padding:43px 0 38px;
+    }
+
+    .hero-card{
+        border-radius:24px;
+    }
+
+    .hero-media{
+        height:315px;
+    }
+
+    .hero-live{
+        top:26px;
+        left:28px;
+    }
+
+    .hero-content{
+        padding:28px 30px 31px;
+    }
+
+    .hero-title{
+        font-size:29px;
+    }
+
+    .hero-description{
+        font-size:17px;
+    }
+
+    .server-head{
+        align-items:flex-start;
+        flex-direction:column;
+        gap:7px;
+    }
+
+    .server-grid{
+        grid-template-columns:1fr;
+    }
+
+    .server-image{
+        height:205px;
+    }
+}
+
+@media(max-width:390px){
+
+    .join-discord{
+        padding:7px 8px;
+        font-size:8px;
+    }
+
+    .hero-media{
+        height:285px;
+    }
+
+    .hero-title{
+        font-size:27px;
+    }
+
+    .hero-description{
+        font-size:16px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="header-inner">
+
+        <div class="brand">
+
+            <div class="brand-name">
+                CONDO GAMES
+            </div>
+
+            <div class="live-small">
+                <span class="live-small-dot"></span>
+                LIVE
+            </div>
+
+        </div>
+
+        <div class="header-buttons">
+
+            <a
+                class="join-discord"
+                href="https://discord.gg/Bjvzbdt3W"
+                target="_blank"
+                rel="noopener">
+
+                JOIN DISCORD CONDO
+
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+<main class="main">
+
+    <section class="hero">
+
+        <div class="hero-card">
+
+            <div class="hero-media">
+
+                <video
+                    id="heroVideo"
+                    autoplay
+                    muted
+                    loop
+                    playsinline>
+                </video>
+
+                <div class="hero-live">
+                    <span class="hero-live-dot"></span>
+                    LIVE
+                </div>
+
+            </div>
+
+            <div class="hero-content">
+
+                <h1 class="hero-title">
+                    Condo Games
+                </h1>
+
+                <p class="hero-description">
+                    Play With me
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section
+        class="server-section"
+        id="servers">
+
+        <div class="server-head">
+
+            <h2 class="server-title">
+                Private Servers
+            </h2>
+
+            <div class="server-stats">
+
+                <span id="serverTotal">
+                    2
+                </span>
+
+                Servers
+
+                •
+
+                <span id="onlineTotal">
+                    0
+                </span>
+
+                Online
+
+            </div>
+
+        </div>
+
+        <div
+            class="server-grid"
+            id="serverGrid">
+        </div>
+
+    </section>
+
+</main>
+
+<footer class="footer">
+    Private Server Directory
+</footer>
+
+<script>
+
+/* =========================
+   VIDEO HERO
+========================= */
+
+const HERO_VIDEOS = [
+
+    "https://www.image2url.com/r2/default/videos/1787333463622-9a60c49b-4fcf-4eb8-936d-d53bb2ea0de2.mp4"
+
+];
+
+const heroVideo =
+    document.getElementById("heroVideo");
+
+heroVideo.src =
+    HERO_VIDEOS[
+        Math.floor(
+            Math.random() *
+            HERO_VIDEOS.length
+        )
+    ];
+
+
+/* =========================
+   SERVER DATA
+   FOTO SUDAH DIGANTI
+========================= */
+
+const SERVERS = [
+
+    {
+        name:"Server 01",
+
+        /* FOTO PERTAMA YANG KAMU KIRIM */
+        image:"https://i.postimg.cc/mgjW7hrZ/Screenshot-2026-08-22-00-41-17-289-com-discord-edit.jpg",
+
+        maxPlayers:20,
+
+        join:
+        "https://roblox.com.bz/games/139410450104051/Chat-with-AI-Emiko?privateServerLinkCode=54143673609137818010004404156007"
+    },
+
+    {
+        name:"Server 02",
+
+        /* FOTO KEDUA YANG KAMU KIRIM */
+        image:"https://i.postimg.cc/qv5jfdbD/Screenshot-2026-08-22-00-40-50-105-com-discord-edit.jpg",
+
+        maxPlayers:20,
+
+        join:
+        "https://roblox.com.bz/games/14153443454/Meet-a-neko?privateServerLinkCode=54143673609137818010004404156007"
+    }
+
+];
+
+
+/* =========================
+   RANDOM ONLINE
+========================= */
+
+function randomOnline(){
+
+    return Math.floor(
+        Math.random() * 10
+    ) + 11;
+
+}
+
+SERVERS.forEach(
+    server => {
+
+        server.players =
+            randomOnline();
+
+    }
+);
+
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const serverGrid =
+    document.getElementById(
+        "serverGrid"
+    );
+
+const serverTotal =
+    document.getElementById(
+        "serverTotal"
+    );
+
+const onlineTotal =
+    document.getElementById(
+        "onlineTotal"
+    );
+
+
+/* =========================
+   RENDER
+========================= */
+
+function renderServers(){
+
+    serverGrid.innerHTML = "";
+
+    SERVERS.forEach(
+        (server,index) => {
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+            card.className =
+                "server-card";
+
+            card.innerHTML = `
+
+                <div class="server-image">
+
+                    <img
+                        src="${server.image}"
+                        alt="${server.name}">
+
+                    <div class="available">
+                        AVAILABLE
+                    </div>
+
+                </div>
+
+                <div class="server-body">
+
+                    <div class="server-name">
+                        ${server.name}
+                    </div>
+
+                    <div class="player-line">
+
+                        <span>
+                            Online
+                        </span>
+
+                        <span
+                            class="player-count"
+                            data-server="${index}">
+
+                            ${server.players} /
+                            ${server.maxPlayers}
+
+                        </span>
+
+                    </div>
+
+                    <a
+                        class="join-server"
+                        href="${server.join}"
+                        target="_blank"
+                        rel="noopener">
+
+                        JOIN SERVER
+
+                    </a>
+
+                </div>
+
+            `;
+
+            serverGrid.appendChild(card);
+
+        }
+    );
+
+    serverTotal.textContent =
+        SERVERS.length;
+
+    updateTotal();
+
+}
+
+
+/* =========================
+   TOTAL ONLINE
+========================= */
+
+function updateTotal(){
+
+    let total = 0;
+
+    SERVERS.forEach(
+        server => {
+
+            total +=
+                server.players;
+
+        }
+    );
+
+    onlineTotal.textContent =
+        total;
+
+}
+
+
+/* =========================
+   UPDATE ONLINE
+========================= */
+
+function updateOnline(){
+
+    SERVERS.forEach(
+        (server,index) => {
+
+            server.players =
+                randomOnline();
+
+            const counter =
+                document.querySelector(
+                    `[data-server="${index}"]`
+                );
+
+            if(counter){
+
+                counter.textContent =
+                    `${server.players} / ${server.maxPlayers}`;
+
+            }
+
+        }
+    );
+
+    updateTotal();
+
+}
+
+
+renderServers();
+
+
+setInterval(
+    updateOnline,
+    3000
+);
+
+</script>
+
+</body>
+</html>
