@@ -3,398 +3,578 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#100711">
 <title>CONDO GAMES</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+:root {
+    --bg: #0b080d;
+    --card: #151019;
+    --pink: #ff4fa3;
+    --pink-light: #ff8bc5;
+    --pink-dark: #d9287c;
+    --text: #fff5fb;
+    --muted: #b5a4b1;
+    --border: rgba(255, 105, 180, .18);
+    --discord: #5865f2;
 }
 
-:root{
-    --bg:#080809;
-    --card:#101012;
-    --border:rgba(255,255,255,.09);
-    --white:#f5f5f6;
-    --muted:#85858d;
-    --green:#35e889;
-    --discord:#5865f2;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-    min-height:100vh;
-    background:#080809;
-    color:var(--white);
-    font-family:Arial,Helvetica,sans-serif;
+html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.header{
-    height:78px;
-    border-bottom:1px solid rgba(255,255,255,.06);
-}
-
-.header-inner{
-    width:min(1060px,calc(100% - 40px));
-    height:100%;
-    margin:auto;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-}
-
-.brand{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.brand-name{
-    font-size:15px;
-    font-weight:800;
-}
-
-.live-small{
-    display:flex;
-    align-items:center;
-    gap:6px;
-    padding:5px 9px;
-    border-radius:999px;
-    background:rgba(53,232,137,.07);
-    border:1px solid rgba(53,232,137,.18);
-    color:var(--green);
-    font-size:9px;
-    font-weight:800;
-}
-
-.live-small-dot{
-    width:6px;
-    height:6px;
-    border-radius:50%;
-    background:var(--green);
-}
-
-.header-buttons{
-    display:flex;
-    align-items:center;
-    gap:8px;
-}
-
-.join-discord{
-    padding:9px 15px;
-    border-radius:8px;
-    background:var(--discord);
-    color:white;
-    text-decoration:none;
-    font-size:11px;
-    font-weight:800;
-    transition:.2s;
-}
-
-.join-discord:hover{
-    background:#4752c4;
-}
-
-.main{
-    width:min(1060px,calc(100% - 40px));
-    margin:auto;
-}
-
-.hero{
-    padding:52px 0 45px;
-}
-
-.hero-card{
-    overflow:hidden;
-    border-radius:25px;
-    border:1px solid var(--border);
-    background:linear-gradient(180deg,#111116,#0d0d11);
-}
-
-.hero-media{
-    position:relative;
-    width:100%;
-    height:390px;
-    overflow:hidden;
-    background:#000;
-}
-
-.hero-media video{
-    width:100%;
-    height:100%;
-    display:block;
-    object-fit:cover;
-}
-
-.hero-media::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    pointer-events:none;
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
     background:
-        linear-gradient(
-            180deg,
-            rgba(0,0,0,.05),
-            rgba(0,0,0,.10) 45%,
-            rgba(0,0,0,.70)
-        );
+        radial-gradient(ellipse at 50% 0%,
+            rgba(255, 48, 151, .12), transparent 45%),
+        var(--bg);
+    color: var(--text);
+    font-family: Inter, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
 }
 
-.hero-live{
-    position:absolute;
-    z-index:5;
-    top:26px;
-    left:28px;
-    display:flex;
-    align-items:center;
-    gap:10px;
-    padding:10px 17px;
-    border-radius:10px;
-    background:#f34c50;
-    color:#fff;
-    font-size:14px;
-    font-weight:900;
-    box-shadow:0 8px 25px rgba(243,76,80,.25);
+a {
+    -webkit-touch-callout: none;
 }
 
-.hero-live-dot{
-    width:12px;
-    height:12px;
-    border-radius:50%;
-    background:white;
+button, a {
+    touch-action: manipulation;
 }
 
-.hero-content{
-    padding:28px 30px 31px;
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    height: 76px;
+    background: rgba(11, 8, 13, .82);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
 }
 
-.hero-title{
-    font-size:30px;
-    line-height:1.12;
-    font-weight:850;
-    letter-spacing:-.7px;
+.header-inner {
+    width: min(1100px, calc(100% - 36px));
+    height: 100%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
 }
 
-.hero-description{
-    margin-top:10px;
-    max-width:700px;
-    color:#85858d;
-    font-size:17px;
-    line-height:1.45;
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    min-width: 0;
 }
 
-.server-section{
-    padding-bottom:40px;
+.brand-name {
+    font-size: 17px;
+    font-weight: 900;
+    letter-spacing: -.5px;
+    white-space: nowrap;
 }
 
-.server-head{
-    display:flex;
-    align-items:flex-end;
-    justify-content:space-between;
-    margin-bottom:19px;
+.live-small {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 10px;
+    border-radius: 50px;
+    background: rgba(255, 79, 163, .09);
+    border: 1px solid rgba(255, 79, 163, .3);
+    color: var(--pink-light);
+    font-size: 10px;
+    font-weight: 900;
 }
 
-.server-title{
-    font-size:18px;
-    font-weight:800;
+.live-small-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--pink);
+    box-shadow: 0 0 12px var(--pink);
+    animation: pulse 1.8s infinite;
 }
 
-.server-stats{
-    color:#707078;
-    font-size:11px;
+.header-buttons {
+    display: flex;
+    align-items: center;
 }
 
-.server-stats span{
-    color:#929299;
+.join-discord {
+    display: inline-flex;
+    min-height: 46px;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 19px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ff4fa3, #db3287);
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 900;
+    box-shadow: 0 5px 22px rgba(255, 79, 163, .17);
+    transition: transform .25s ease, box-shadow .25s ease;
 }
 
-.server-grid{
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:18px;
+.main {
+    width: min(1100px, calc(100% - 36px));
+    margin: auto;
 }
 
-.server-card{
-    overflow:hidden;
-    border-radius:13px;
-    border:1px solid var(--border);
-    background:#101012;
+.hero {
+    padding: 42px 0 44px;
 }
 
-.server-image{
-    position:relative;
-    width:100%;
-    height:232px;
-    overflow:hidden;
-    background:#111;
+.hero-card {
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 25px;
+    background: linear-gradient(145deg, #19111b, #100b13);
+    box-shadow: 0 20px 65px rgba(0, 0, 0, .25);
 }
 
-.server-image img{
-    width:100%;
-    height:100%;
-    display:block;
-    object-fit:cover;
+.hero-media {
+    position: relative;
+    height: 410px;
+    overflow: hidden;
+    background: #130b12;
 }
 
-.server-image::after{
-    content:"";
-    position:absolute;
-    inset:0;
+.hero-media video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.hero-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
     background:
-        linear-gradient(
-            180deg,
-            transparent 30%,
-            rgba(0,0,0,.65)
-        );
+        linear-gradient(180deg,
+            rgba(10, 4, 10, .08),
+            rgba(10, 4, 10, .05) 35%,
+            rgba(10, 4, 10, .85));
+    pointer-events: none;
 }
 
-.available{
-    position:absolute;
-    z-index:3;
-    top:13px;
-    left:13px;
-    padding:6px 9px;
-    border-radius:6px;
-    background:rgba(8,8,9,.84);
-    border:1px solid rgba(255,255,255,.08);
-    color:var(--green);
-    font-size:9px;
-    font-weight:850;
+.hero-live {
+    position: absolute;
+    z-index: 2;
+    top: 22px;
+    left: 22px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 17px;
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 12px;
+    background: rgba(235, 46, 133, .9);
+    box-shadow: 0 6px 25px rgba(255, 40, 140, .25);
+    color: white;
+    font-size: 12px;
+    font-weight: 900;
+    backdrop-filter: blur(10px);
 }
 
-.server-body{
-    padding:17px;
+.hero-live-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: white;
+    box-shadow: 0 0 12px white;
+    animation: pulse 1.8s infinite;
 }
 
-.server-name{
-    font-size:17px;
-    font-weight:750;
+.hero-content {
+    padding: 27px 30px 32px;
 }
 
-.player-line{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    margin-top:15px;
-    color:#85858b;
-    font-size:11px;
+.hero-title {
+    font-size: clamp(28px, 5vw, 39px);
+    line-height: 1.12;
+    font-weight: 950;
+    letter-spacing: -1px;
 }
 
-.player-count{
-    color:#ededed;
-    font-weight:750;
+.hero-title span {
+    color: var(--pink);
+    text-shadow: 0 0 25px rgba(255, 79, 163, .2);
 }
 
-.join-server{
-    display:block;
-    width:100%;
-    margin-top:15px;
-    padding:11px;
-    border-radius:7px;
-    background:#f1f1f1;
-    color:#090909;
-    text-align:center;
-    text-decoration:none;
-    font-size:10px;
-    font-weight:850;
+.hero-description {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.7;
 }
 
-.join-server:hover{
-    background:#fff;
+.server-section {
+    padding-bottom: 38px;
 }
 
-.footer{
-    padding:55px 0 30px;
-    color:#4e4e53;
-    text-align:center;
-    font-size:10px;
+.server-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 23px;
 }
 
-@media(max-width:720px){
+.server-title {
+    font-size: 23px;
+    font-weight: 900;
+    letter-spacing: -.5px;
+}
+
+.server-stats {
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: rgba(255, 79, 163, .045);
+    color: var(--muted);
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.server-stats span {
+    color: var(--pink-light);
+    font-weight: 900;
+}
+
+.server-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.server-card {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 19px;
+    background: linear-gradient(145deg, #18111b, #100c13);
+    box-shadow: 0 9px 30px rgba(0,0,0,.15);
+    transition: transform .3s ease, border-color .3s ease,
+                box-shadow .3s ease;
+    animation: fadeUp .65s both;
+}
+
+.server-card:nth-child(2) {
+    animation-delay: .1s;
+}
+
+.server-image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+    background: #1a1019;
+}
+
+.server-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform .65s cubic-bezier(.2,.7,.2,1);
+}
+
+.server-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(0,0,0,.08),
+        transparent 40%,
+        rgba(8,4,9,.45)
+    );
+    pointer-events: none;
+}
+
+.server-badge {
+    position: absolute;
+    z-index: 2;
+    top: 15px;
+    left: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 12px;
+    border: 1px solid rgba(255, 117, 190, .3);
+    border-radius: 9px;
+    background: rgba(20, 10, 19, .82);
+    color: var(--pink-light);
+    font-size: 11px;
+    font-weight: 900;
+    backdrop-filter: blur(12px);
+}
+
+.server-badge-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--pink);
+}
+
+.server-body {
+    padding: 21px;
+}
+
+.server-name {
+    font-size: 21px;
+    font-weight: 900;
+    letter-spacing: -.4px;
+}
+
+.server-subtitle {
+    margin-top: 7px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.player-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 13px 14px;
+    border: 1px solid rgba(255,255,255,.055);
+    border-radius: 11px;
+    background: rgba(255,255,255,.025);
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.player-count {
+    color: var(--pink-light);
+    font-weight: 900;
+}
+
+.join-server {
+    display: flex;
+    width: 100%;
+    min-height: 54px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 17px;
+    padding: 14px 18px;
+    border: 1px solid rgba(255, 255, 255, .14);
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ff69b4, #e32d89);
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 950;
+    letter-spacing: .3px;
+    box-shadow: 0 7px 23px rgba(255, 61, 155, .17);
+    transition: transform .2s ease, box-shadow .25s ease,
+                filter .25s ease;
+}
+
+.join-server:active,
+.join-discord:active {
+    transform: scale(.97);
+}
+
+.footer {
+    padding: 38px 15px 30px;
+    border-top: 1px solid rgba(255,255,255,.045);
+    color: #806c7b;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+.footer span {
+    color: var(--pink);
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .45; }
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (hover: hover) {
+    .join-discord:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 9px 30px rgba(255, 79, 163, .32);
+    }
+
+    .join-server:hover {
+        transform: translateY(-2px);
+        filter: brightness(1.1);
+        box-shadow: 0 10px 30px rgba(255, 61, 155, .3);
+    }
+
+    .server-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(255, 105, 180, .42);
+        box-shadow: 0 18px 40px rgba(0,0,0,.25);
+    }
+
+    .server-card:hover .server-image img {
+        transform: scale(1.045);
+    }
+}
+
+@media (max-width: 720px) {
+    .header {
+        height: 72px;
+    }
 
     .header-inner,
-    .main{
-        width:calc(100% - 28px);
+    .main {
+        width: calc(100% - 28px);
     }
 
-    .header{
-        height:68px;
+    .brand {
+        gap: 8px;
     }
 
-    .header-inner{
-        gap:10px;
+    .brand-name {
+        font-size: 14px;
     }
 
-    .header-buttons{
-        gap:6px;
+    .live-small {
+        padding: 6px 8px;
+        font-size: 9px;
     }
 
-    .join-discord{
-        padding:8px 10px;
-        font-size:9px;
+    .join-discord {
+        min-height: 44px;
+        padding: 0 12px;
+        border-radius: 11px;
+        font-size: 10px;
     }
 
-    .hero{
-        padding:43px 0 38px;
+    .hero {
+        padding: 25px 0 35px;
     }
 
-    .hero-card{
-        border-radius:24px;
+    .hero-card {
+        border-radius: 20px;
     }
 
-    .hero-media{
-        height:315px;
+    .hero-media {
+        height: 300px;
     }
 
-    .hero-live{
-        top:26px;
-        left:28px;
+    .hero-live {
+        top: 15px;
+        left: 15px;
+        padding: 10px 13px;
     }
 
-    .hero-content{
-        padding:28px 30px 31px;
+    .hero-content {
+        padding: 23px 21px 26px;
     }
 
-    .hero-title{
-        font-size:29px;
+    .hero-description {
+        font-size: 15px;
     }
 
-    .hero-description{
-        font-size:17px;
+    .server-head {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
     }
 
-    .server-head{
-        align-items:flex-start;
-        flex-direction:column;
-        gap:7px;
+    .server-title {
+        font-size: 22px;
     }
 
-    .server-grid{
-        grid-template-columns:1fr;
+    .server-grid {
+        grid-template-columns: 1fr;
+        gap: 19px;
     }
 
-    .server-image{
-        height:205px;
+    .server-image {
+        height: 235px;
+    }
+
+    .server-body {
+        padding: 19px;
+    }
+
+    .server-name {
+        font-size: 20px;
+    }
+
+    .join-server {
+        min-height: 56px;
+        font-size: 14px;
     }
 }
 
-@media(max-width:390px){
-
-    .join-discord{
-        padding:7px 8px;
-        font-size:8px;
+@media (max-width: 390px) {
+    .header-inner,
+    .main {
+        width: calc(100% - 22px);
     }
 
-    .hero-media{
-        height:285px;
+    .brand-name {
+        font-size: 12px;
     }
 
-    .hero-title{
-        font-size:27px;
+    .live-small {
+        gap: 5px;
+        padding: 6px;
     }
 
-    .hero-description{
-        font-size:16px;
+    .join-discord {
+        padding: 0 9px;
+        font-size: 9px;
+    }
+
+    .hero-media {
+        height: 255px;
+    }
+
+    .server-image {
+        height: 205px;
+    }
+
+    .hero-title {
+        font-size: 29px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
     }
 }
 </style>
@@ -403,368 +583,182 @@ body{
 <body>
 
 <header class="header">
-
     <div class="header-inner">
-
         <div class="brand">
-
-            <div class="brand-name">
-                CONDO GAMES
-            </div>
-
+            <div class="brand-name">CONDO GAMES</div>
             <div class="live-small">
                 <span class="live-small-dot"></span>
                 LIVE
             </div>
-
         </div>
 
         <div class="header-buttons">
-
-            <a
-                class="join-discord"
-                href="https://discord.gg/Bjvzbdt3W"
-                target="_blank"
-                rel="noopener">
-
-                JOIN DISCORD CONDO
-
+            <a class="join-discord"
+               href="https://discord.gg/Bjvzbdt3W"
+               target="_blank"
+               rel="noopener noreferrer">
+                JOIN DISCORD
+                <span aria-hidden="true">↗</span>
             </a>
-
         </div>
-
     </div>
-
 </header>
 
 <main class="main">
 
     <section class="hero">
-
         <div class="hero-card">
-
             <div class="hero-media">
-
-                <video
-                    id="heroVideo"
-                    autoplay
-                    muted
-                    loop
-                    playsinline>
+                <video id="heroVideo"
+                       autoplay
+                       muted
+                       loop
+                       playsinline
+                       preload="metadata">
                 </video>
 
                 <div class="hero-live">
                     <span class="hero-live-dot"></span>
                     LIVE
                 </div>
-
             </div>
 
             <div class="hero-content">
-
                 <h1 class="hero-title">
-                    Condo Games
+                    CONDO <span>GAMES</span>
                 </h1>
 
                 <p class="hero-description">
-                    Play With me
+                    Play With me. Find your server and join the community.
                 </p>
-
             </div>
-
         </div>
-
     </section>
 
-    <section
-        class="server-section"
-        id="servers">
-
+    <section class="server-section" id="servers">
         <div class="server-head">
-
-            <h2 class="server-title">
-                Private Servers
-            </h2>
+            <h2 class="server-title">Private Servers</h2>
 
             <div class="server-stats">
-
-                <span id="serverTotal">
-                    2
-                </span>
-
-                Servers
-
-                •
-
-                <span id="onlineTotal">
-                    0
-                </span>
-
-                Online
-
+                <span id="serverTotal">2</span> Servers
+                &nbsp;•&nbsp;
+                <span>Demo</span> Player Data
             </div>
-
         </div>
 
-        <div
-            class="server-grid"
-            id="serverGrid">
-        </div>
-
+        <div class="server-grid" id="serverGrid"></div>
     </section>
 
 </main>
 
 <footer class="footer">
+    <span>♥</span> CONDO GAMES
+    <br>
     Private Server Directory
 </footer>
 
 <script>
-
-/* =========================
-   VIDEO HERO
-========================= */
+/* HERO VIDEO */
 
 const HERO_VIDEOS = [
-
     "https://www.image2url.com/r2/default/videos/1787333463622-9a60c49b-4fcf-4eb8-936d-d53bb2ea0de2.mp4"
-
 ];
 
-const heroVideo =
-    document.getElementById("heroVideo");
+const heroVideo = document.getElementById("heroVideo");
 
-heroVideo.src =
-    HERO_VIDEOS[
-        Math.floor(
-            Math.random() *
-            HERO_VIDEOS.length
-        )
-    ];
+heroVideo.src = HERO_VIDEOS[0];
 
-
-/* =========================
-   SERVER DATA
-   FOTO SUDAH DIGANTI
-========================= */
+/* SERVER DATA
+   Ganti join dengan link Roblox resmi yang sudah diverifikasi.
+*/
 
 const SERVERS = [
-
     {
-        name:"Server 01",
-
-        /* FOTO PERTAMA YANG KAMU KIRIM */
-        image:"https://i.postimg.cc/mgjW7hrZ/Screenshot-2026-08-22-00-41-17-289-com-discord-edit.jpg",
-
-        maxPlayers:20,
-
-        join:
-        "https://www.roblox.com.am/games/80939583764469/Be-a-Baddie?privateServerLinkCode=185762360083511976525780889928"
+        name: "Server 01",
+        image: "https://i.postimg.cc/mgjW7hrZ/Screenshot-2026-08-22-00-41-17-289-com-discord-edit.jpg",
+        maxPlayers: 20,
+        demoPlayers: 14,
+        join: "https://www.roblox.com/"
     },
-
     {
-        name:"Server 02",
-
-        /* FOTO KEDUA YANG KAMU KIRIM */
-        image:"https://i.postimg.cc/qv5jfdbD/Screenshot-2026-08-22-00-40-50-105-com-discord-edit.jpg",
-
-        maxPlayers:20,
-
-        join:
-        "https://www.roblox.com.am/games/139410450104051/Chat-with-AI-Emiko?privateServerLinkCode=185762360083511976525780889928"
+        name: "Server 02",
+        image: "https://i.postimg.cc/qv5jfdbD/Screenshot-2026-08-22-00-40-50-105-com-discord-edit.jpg",
+        maxPlayers: 20,
+        demoPlayers: 17,
+        join: "https://www.roblox.com/"
     }
-
 ];
 
+/* RENDER SERVER CARDS */
 
-/* =========================
-   RANDOM ONLINE
-========================= */
+const serverGrid = document.getElementById("serverGrid");
+const serverTotal = document.getElementById("serverTotal");
 
-function randomOnline(){
-
-    return Math.floor(
-        Math.random() * 10
-    ) + 11;
-
-}
-
-SERVERS.forEach(
-    server => {
-
-        server.players =
-            randomOnline();
-
-    }
-);
-
-
-/* =========================
-   ELEMENTS
-========================= */
-
-const serverGrid =
-    document.getElementById(
-        "serverGrid"
-    );
-
-const serverTotal =
-    document.getElementById(
-        "serverTotal"
-    );
-
-const onlineTotal =
-    document.getElementById(
-        "onlineTotal"
-    );
-
-
-/* =========================
-   RENDER
-========================= */
-
-function renderServers(){
-
+function renderServers() {
     serverGrid.innerHTML = "";
 
-    SERVERS.forEach(
-        (server,index) => {
+    SERVERS.forEach((server, index) => {
+        const card = document.createElement("article");
+        card.className = "server-card";
 
-            const card =
-                document.createElement(
-                    "article"
-                );
+        const imageWrap = document.createElement("div");
+        imageWrap.className = "server-image";
 
-            card.className =
-                "server-card";
+        const img = document.createElement("img");
+        img.src = server.image;
+        img.alt = server.name;
+        img.loading = index === 0 ? "eager" : "lazy";
+        img.decoding = "async";
 
-            card.innerHTML = `
+        const badge = document.createElement("div");
+        badge.className = "server-badge";
 
-                <div class="server-image">
+        const badgeDot = document.createElement("span");
+        badgeDot.className = "server-badge-dot";
 
-                    <img
-                        src="${server.image}"
-                        alt="${server.name}">
+        badge.append(badgeDot, document.createTextNode("PRIVATE SERVER"));
+        imageWrap.append(img, badge);
 
-                    <div class="available">
-                        AVAILABLE
-                    </div>
+        const body = document.createElement("div");
+        body.className = "server-body";
 
-                </div>
+        const name = document.createElement("h3");
+        name.className = "server-name";
+        name.textContent = server.name;
 
-                <div class="server-body">
+        const subtitle = document.createElement("p");
+        subtitle.className = "server-subtitle";
+        subtitle.textContent = "Join the server and enjoy your game.";
 
-                    <div class="server-name">
-                        ${server.name}
-                    </div>
+        const playerLine = document.createElement("div");
+        playerLine.className = "player-line";
 
-                    <div class="player-line">
+        const playerLabel = document.createElement("span");
+        playerLabel.textContent = "Demo player count";
 
-                        <span>
-                            Online
-                        </span>
+        const playerCount = document.createElement("span");
+        playerCount.className = "player-count";
+        playerCount.textContent =
+            server.demoPlayers + " / " + server.maxPlayers;
 
-                        <span
-                            class="player-count"
-                            data-server="${index}">
+        playerLine.append(playerLabel, playerCount);
 
-                            ${server.players} /
-                            ${server.maxPlayers}
+        const join = document.createElement("a");
+        join.className = "join-server";
+        join.href = server.join;
+        join.target = "_blank";
+        join.rel = "noopener noreferrer";
+        join.textContent = "JOIN SERVER  ↗";
 
-                        </span>
+        body.append(name, subtitle, playerLine, join);
+        card.append(imageWrap, body);
+        serverGrid.appendChild(card);
+    });
 
-                    </div>
-
-                    <a
-                        class="join-server"
-                        href="${server.join}"
-                        target="_blank"
-                        rel="noopener">
-
-                        JOIN SERVER
-
-                    </a>
-
-                </div>
-
-            `;
-
-            serverGrid.appendChild(card);
-
-        }
-    );
-
-    serverTotal.textContent =
-        SERVERS.length;
-
-    updateTotal();
-
+    serverTotal.textContent = SERVERS.length;
 }
-
-
-/* =========================
-   TOTAL ONLINE
-========================= */
-
-function updateTotal(){
-
-    let total = 0;
-
-    SERVERS.forEach(
-        server => {
-
-            total +=
-                server.players;
-
-        }
-    );
-
-    onlineTotal.textContent =
-        total;
-
-}
-
-
-/* =========================
-   UPDATE ONLINE
-========================= */
-
-function updateOnline(){
-
-    SERVERS.forEach(
-        (server,index) => {
-
-            server.players =
-                randomOnline();
-
-            const counter =
-                document.querySelector(
-                    `[data-server="${index}"]`
-                );
-
-            if(counter){
-
-                counter.textContent =
-                    `${server.players} / ${server.maxPlayers}`;
-
-            }
-
-        }
-    );
-
-    updateTotal();
-
-}
-
 
 renderServers();
-
-
-setInterval(
-    updateOnline,
-    3000
-);
-
 </script>
 
 </body>
